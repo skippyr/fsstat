@@ -1,9 +1,4 @@
-VERSION:=v1.0.0
-PKG:=mistureba
-CC:=cc
-CFLAGS:=-std=c99 -pedantic -Os -Wall
-BINPATH:=/usr/local/bin
-MAN1PATH:=/usr/local/man/man1
+include config.mk
 
 .PHONY: all clean install uninstall
 
@@ -14,8 +9,7 @@ clean:
 
 install: all
 	mkdir -p ${MAN1PATH} ${BINPATH};
-	sed "s/\$${VERSION}/${VERSION}/; s/\$${PKG}/${PKG}/" fsstat.1 >\
-	    ${MAN1PATH}/fsstat.1
+	sed "s/\$${VERSION}/${VERSION}/" fsstat.1 > ${MAN1PATH}/fsstat.1
 	cp fsstat ${BINPATH};
 
 uninstall:
